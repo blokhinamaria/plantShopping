@@ -1,7 +1,7 @@
 {
   "name": "shoppingcart",
   "private": true,
-  "homepage": "https://github.com/plantShopping",
+  "homepage": "https://github.com/blokhinamaria/plantShopping",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
