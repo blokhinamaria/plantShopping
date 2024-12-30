@@ -15,6 +15,7 @@ function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     //const [addedToCart, setAddedToCart] = useState({});
+    const addedToCart = useSelector((state) => state.cart.addedToCart);
 
     const totalQuantity = useSelector(calculateTotalQuantity);
     
@@ -267,8 +268,7 @@ function ProductList() {
         console.log(item),
         dispatch(addItem(item)); //displatches the plant details to the addItem() reducer function in CartSlice.jsx
         
-        //setAddedToCart((prevState) => ({...prevState, [item.name]: true, // Set the product name as key and value as true to indicate it's added to cart}));
-        //console.log("Cart after dispatch:", addedToCart);
+        //setAddedToCart((prevState) => ({...prevState, [item.name]: true})) // Set the product name as key and value as true to indicate it's added to cart}));
     };
 
     return (
@@ -314,7 +314,7 @@ function ProductList() {
                                     <div className='description'>{plant.description}</div>
                                     <div className='cost'>${plant.cost}</div>
                                     <div className='add-to-cart-button'>
-                                    <button className='add-to-cart btn-primary' onClick={() => handleAddToCart(plant)}>Add To Cart</button>
+                                    <button className='add-to-cart btn-primary' onClick={() => handleAddToCart(plant)} disabled={!!addedToCart[plant.name]}>{addedToCart[plant.name] ? "Added to Cart" : "Add to Cart"}</button>
                                     </div>
                                 </div>))};
                             </div>
